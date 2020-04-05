@@ -1,4 +1,6 @@
 language: ruby
+os: linux
+dist: bionic
 
 rvm:
   - ruby-head
@@ -8,7 +10,7 @@ rvm:
   - 2.2.10
 
 env:
-  matrix:
+  jobs:
     - PYTHON=python
     - PYENV_VERSION=3.6 PYTHON=python
 
@@ -21,6 +23,6 @@ before_script:
   - pip install --user -r requirements.txt
   - PYENV_VERSION=3.6 pip3 install --user -r requirements.txt
 
-matrix:
+jobs:
   allow_failures:
     - env: PYTHON=python # Ignore failed on python 2.7
