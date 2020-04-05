@@ -17,7 +17,7 @@ before_install:
   - gem update bundler
 
 before_script:
-  - sudo apt-get python3-setuptools python3-pip
+  - sudo apt install python3-setuptools python3-pip
   - pip install --user -r requirements.txt
   - PYENV_VERSION=3.6 pip3 install --user -r requirements.txt
 
