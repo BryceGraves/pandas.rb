@@ -1,4 +1,3 @@
-sudo: false
 language: ruby
 
 rvm:
@@ -10,17 +9,18 @@ rvm:
 
 env:
   matrix:
-  - PYTHON=python
-  - PYENV_VERSION=3.6 PYTHON=python
+    - PYTHON=python
+    - PYENV_VERSION=3.6 PYTHON=python
 
 before_install:
   - gem update --system
   - gem update bundler
 
 before_script:
+  - sudo apt-get python3-setuptools python3-pip
   - pip install --user -r requirements.txt
   - PYENV_VERSION=3.6 pip3 install --user -r requirements.txt
 
 matrix:
   allow_failures:
-  - env: PYTHON=python  # Ignore failed on python 2.7
+    - env: PYTHON=python # Ignore failed on python 2.7
