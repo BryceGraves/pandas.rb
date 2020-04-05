@@ -9,20 +9,19 @@ rvm:
   - 2.3.7
   - 2.2.10
 
-env:
-  jobs:
-    - PYTHON=python
-    - PYENV_VERSION=3.6 PYTHON=python
-
 before_install:
   - gem update --system
   - gem update bundler
 
-before_script:
-  - sudo apt install install python3-dev
-  - pip install --user -r requirements.txt
-  - PYENV_VERSION=3.6 pip3 install --user -r requirements.txt
-
 jobs:
   allow_failures:
-    - env: PYTHON=python # Ignore failed on python 2.7
+    - python: 2.7
+  include:
+    - name: 'Python 3.6 on Linux'
+      python: 3.6
+      before_script:
+        - pip3 install --user -r requirements.txt
+    - name: 'Python 2.7 on Linux'
+      python: 2.7
+      before_script:
+        - pip install --user -r requirements.txt
